@@ -3,7 +3,7 @@
 - This is a Zephyr application that blinks the LED using a PWM signal.
 - Its based on the zephyr project sample [blinky_pwm](https://github.com/zephyrproject-rtos/zephyr/tree/main/samples/basic/blinky_pwm).
 ---
-- Check [overlay file](./boards/stm32f401cc.overlay) for helpfull comments oon understanding the how to use the dts file
+- Check [overlay file](./boards/stm32f401cc.overlay) for helpful comments on understanding how to use the dts file
 - --
 # Building
 - move to the project directory
