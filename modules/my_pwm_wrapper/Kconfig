@@ -1,0 +1,19 @@
+menu "My PWM Wrapper"
+
+config MY_PWM_WRAPPER
+    bool "Enable My PWM module"
+    depends on PWM
+    default y
+
+if MY_PWM_WRAPPER
+
+config MY_PWM_DUTY_CYCLE
+    int "PWM duty cycle"
+    range 0 100
+    default 50
+    help
+        Specifies the PWM Duty Cycle used by the module.
+
+endif
+
+endmenu

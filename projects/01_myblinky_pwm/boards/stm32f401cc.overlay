@@ -1,0 +1,43 @@
+
+// we must enable the timer peripheral and its pwm as its not enabled in the dts file of the board by default
+
+&timers2 {
+	status = "okay";
+
+	pwm2: pwm {
+		status = "okay";
+		pinctrl-0 = <&tim2_ch2_pa1 &tim2_ch3_pa2 &tim2_ch4_pa3>;
+		pinctrl-names = "default";
+	};
+};
+
+ / {
+
+
+    aliases {
+        // alias for the "my_pwm_led_name" , note we MUST use "-" in .dts but we use "_" in the code
+        pwm-led0 = &my_pwm_led_name;
+    };
+
+
+    pwmleds {
+
+
+        // we dont necessarily need to depend on "pwm-leds" but its makes the code readable
+        // as it indicats this not just a normal pwm but a pwm led
+
+        compatible = "pwm-leds";
+
+        my_pwm_led_name: pwm_led_0 {
+            /*
+                * setting the period to 20ms (just a defualt value we will change it later in the code)
+                * and setting the polarity to normal (active high)
+
+                * I access the pwm2 object using its phandle and specifying the channel number(2) , period and polarity 
+                * so now we access the "&tim2_ch2_pa1" inside the pwm2 struct
+            */
+            pwms = <&pwm2 2 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+            label = "TIM2 Channel 2  PA1 PWM LED";
+        };
+    };
+};
